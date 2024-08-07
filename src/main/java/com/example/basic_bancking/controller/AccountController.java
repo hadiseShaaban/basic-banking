@@ -13,6 +13,17 @@ public class AccountController {
 
     @PostMapping("/{id}/deposit")
     public void postDeposit(@PathVariable Long id, @RequestParam Double amount){
+        accountService.deposit(id, amount);
+    }
 
+
+    @PostMapping("/{id}/withdraw")
+    public void postWithdraw(@PathVariable Long id, @RequestParam Double amount){
+        accountService.withdraw(id, amount);
+    }
+
+    @GetMapping("/{id}/getbalance")
+    public Double getBalance(@PathVariable Long id){
+        return accountService.getBalance(id);
     }
 }
