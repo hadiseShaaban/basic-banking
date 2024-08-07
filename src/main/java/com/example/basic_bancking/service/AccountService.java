@@ -15,13 +15,18 @@ public class AccountService {
     AccountRepository accountRepository;
 
     @Transactional
-    public synchronized void deposit(Long accountId, Double amount) {
-        Optional<Account> account = accountRepository.findById(accountId);
-        account.ifPresent(account1 -> {
-            account1.setBalance(account1.getBalance() + amount);
-            accountRepository.save(account1);
-        });
-        account.orElseThrow(() -> new IllegalArgumentException("invalid arguments"));
+    public void deposit(Long toId, Long fromId, Double amount) {
+
+        Optional<Account> accountTo = accountRepository.findById(toId);
+        synchronized (accountTo) {
+            accountTo.ifPresent(account1 -> {
+                account1.setBalance(account1.getBalance() + amount);
+                accountRepository.save(account1);
+            });
+            accountTo.orElseThrow(() -> new IllegalArgumentException("invalid sourceAccount arguments"));
+
+            withdraw(fromId, amount);
+        }
     }
 
     @Transactional
