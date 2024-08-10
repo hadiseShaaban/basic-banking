@@ -24,9 +24,14 @@ public class AccountService {
         accountFrom.ifPresent(account1 -> {
             Optional<Account> accountTo = accountRepository.findById(toId);
             accountTo.ifPresent(account2 ->{
-                account1.setBalance(account1.getBalance() + amount);
-                accountRepository.save(account1);
-                withdraw(fromId, amount);
+                if (account1.getBalance() > amount) {
+                    account1.setBalance(account1.getBalance() - amount);
+                    accountRepository.save(account1);
+                    account2.setBalance(account2.getBalance() + amount);
+                    accountRepository.save(account2);
+                } else {
+                    throw new IllegalArgumentException("insufficient balance for source account");
+                }
             });
             accountTo.orElseThrow(()->new IllegalArgumentException("Destination Account isn't exist!"));
 
