@@ -35,4 +35,16 @@ public class AccountController {
     public Double getBalance(@PathVariable Long id) {
         return accountService.getBalance(id);
     }
+
+    @PostMapping("/create-account")
+    public ResponseEntity<Object> postCreateAccount(@RequestParam String accountName, @RequestParam Double defaultAmount) {
+        accountService.createAccount(accountName, defaultAmount);
+        return new ResponseEntity<>(accountName + " created!", HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete-account")
+    public ResponseEntity<Object> deleteAccount(@RequestParam Long id) {
+        String deletedName = accountService.deleteAccount(id);
+        return new ResponseEntity<>(deletedName + " deleted!", HttpStatus.OK);
+    }
 }
