@@ -1,4 +1,4 @@
-package com.example.basic_bancking;
+package com.example.basic_banking;
 
 public class ApplicationExceptionHandler {
 }

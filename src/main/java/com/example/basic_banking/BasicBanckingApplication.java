@@ -1,4 +1,4 @@
-package com.example.basic_bancking;
+package com.example.basic_banking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

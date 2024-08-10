@@ -1,6 +1,6 @@
-package com.example.basic_bancking.repository;
+package com.example.basic_banking.repository;
 
-import com.example.basic_bancking.model.Account;
+import com.example.basic_banking.model.Account;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;

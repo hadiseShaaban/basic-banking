@@ -1,7 +1,7 @@
-package com.example.basic_bancking.service;
+package com.example.basic_banking.service;
 
-import com.example.basic_bancking.model.Account;
-import com.example.basic_bancking.repository.AccountRepository;
+import com.example.basic_banking.model.Account;
+import com.example.basic_banking.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Autowired;
