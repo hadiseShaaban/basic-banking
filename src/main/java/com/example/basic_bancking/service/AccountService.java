@@ -19,10 +19,10 @@ public class AccountService {
     @Transactional
     public void deposit(Long toId, Long fromId, Double amount) {
 
-        Optional<Account> accountFrom = accountRepository.findByIdForUpdate(fromId);
+        Optional<Account> accountFrom = accountRepository.findById(fromId);
 
         accountFrom.ifPresent(account1 -> {
-            Optional<Account> accountTo = accountRepository.findByIdForUpdate(toId);
+            Optional<Account> accountTo = accountRepository.findById(toId);
             accountTo.ifPresent(account2 ->{
                 account1.setBalance(account1.getBalance() + amount);
                 accountRepository.save(account1);
@@ -38,7 +38,7 @@ public class AccountService {
     @Synchronized
     @Transactional
     public void withdraw(Long accountId, Double amount) {
-        Optional<Account> account = accountRepository.findByIdForUpdate(accountId);
+        Optional<Account> account = accountRepository.findById(accountId);
         account.ifPresent(account1 -> {
             if (account1.getBalance() > amount) {
                 account1.setBalance(account1.getBalance() - amount);
@@ -53,7 +53,7 @@ public class AccountService {
     @Synchronized
     @Transactional
     public Double getBalance(Long accountId) {
-        Optional<Account> account = accountRepository.findByIdForUpdate(accountId);
+        Optional<Account> account = accountRepository.findById(accountId);
         Double balance = 0.0;
 
         if (account.isPresent()) {
@@ -78,7 +78,7 @@ public class AccountService {
     @Synchronized
     @Transactional
     public String deleteAccount(Long accountId) {
-        Optional<Account> account = accountRepository.findByIdForUpdate(accountId);
+        Optional<Account> account = accountRepository.findById(accountId);
         String deletedName = "";
 
         if (account.isPresent()) {
