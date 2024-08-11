@@ -1,7 +1,8 @@
-package com.example.basic_banking.service;
+package com.example.basic_banking.service.impl;
 
 import com.example.basic_banking.model.Account;
 import com.example.basic_banking.repository.AccountRepository;
+import com.example.basic_banking.service.AdminAccountServices;
 import jakarta.transaction.Transactional;
 import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AdminAccountService {
+public class AdminAccountService implements AdminAccountServices {
 
     @Autowired
     AccountRepository accountRepository;

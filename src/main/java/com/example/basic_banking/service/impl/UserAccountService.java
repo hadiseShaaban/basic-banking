@@ -1,4 +1,4 @@
-package com.example.basic_banking.service;
+package com.example.basic_banking.service.impl;
 
 import com.example.basic_banking.model.Account;
 import com.example.basic_banking.repository.AccountRepository;

@@ -1,8 +1,8 @@
 package com.example.basic_banking.controller;
 
 import com.example.basic_banking.repository.AccountRepository;
-import com.example.basic_banking.service.AdminAccountService;
-import com.example.basic_banking.service.UserAccountService;
+import com.example.basic_banking.service.impl.AdminAccountService;
+import com.example.basic_banking.service.impl.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,6 @@ public class AccountController {
         userAccountService.deposit(to, from, amount);
         return new ResponseEntity<>("واریز به حساب " + accountRepository.findById(to).get().getName() + " انجام شد :)", HttpStatus.OK);
     }
-
 
     @PostMapping("/{id}/withdraw")
     public ResponseEntity<Object> postWithdraw(@PathVariable Long id, @RequestParam Double amount) {
